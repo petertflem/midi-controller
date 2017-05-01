@@ -1,19 +1,22 @@
 #include "Arduino.h"
+#include "MIDICommand.h"
 
 #ifndef PRESET
 #define PRESET
+
+#define NUMBER_OF_MIDI_COMMANDS 2
 
 class Preset
 {
   public:
     Preset();
-    Preset(char* presetName, char* presetData);
+    Preset(char* presetName, MIDICommand** MIDICommands);
     char* getPresetName();
-    char* getPresetData();
+    MIDICommand* getMIDICommands();
     
   private:
     char* _presetName;
-    char* _presetData;
+    MIDICommand* _MIDICommands[2];
 };
 
 #endif

@@ -1,4 +1,5 @@
 #include "Preset.h"
+#include "MIDICommand.h"
 
 #ifndef BANK
 #define BANK
@@ -17,10 +18,10 @@ class Bank
 
     char* getBankName();
 
-    void setPresetA(char* presetName, char* presetData);
-    void setPresetB(char* presetName, char* presetData);
-    void setPresetC(char* presetName, char* presetData);
-    void setPresetD(char* presetName, char* presetData);
+    void setPresetA(char* presetName, MIDICommand** MIDICommands);
+    void setPresetB(char* presetName, MIDICommand** MIDICommands);
+    void setPresetC(char* presetName, MIDICommand** MIDICommands);
+    void setPresetD(char* presetName, MIDICommand** MIDICommands);
 
   private:
     Preset* _presetA;

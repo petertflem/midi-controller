@@ -1,9 +1,13 @@
 #include "Preset.h"
 
-Preset::Preset(char* presetName, char* presetData)
+Preset::Preset(char* presetName, MIDICommand** MIDICommands)
 {
+  Serial.println(MIDICommands[0]->getProgramChange());
+  
   _presetName = presetName;
-  _presetData = presetData;
+  _MIDICommands = MIDICommands;
+
+  Serial.println(_MIDICommands[0]->getProgramChange());
 }
 
 /* ========== PUBLIC FUNCTIONS ========== */
@@ -12,9 +16,9 @@ char* Preset::getPresetName()
   return _presetName;
 }
 
-char* Preset::getPresetData()
+MIDICommand* Preset::getMIDICommands()
 {
-  return _presetData;
+  return *_MIDICommands;
 }
 
 

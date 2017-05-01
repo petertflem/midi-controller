@@ -94,6 +94,9 @@ void MenuManager::handleInteractionInPresetMenu(byte buttonsState)
 
   SetList* currentSetList = _setListManager->getCurrentSetList();
   Bank* currentBank = currentSetList->getCurrentBank();
+
+  byte channel = 0;
+  byte programChange = 0;
   
   if (buttonsState == BUTTONS_A_AND_B_PRESSED)
   {
@@ -108,6 +111,25 @@ void MenuManager::handleInteractionInPresetMenu(byte buttonsState)
   else if (buttonsState == BUTTON_A_PRESSED)
   {
     fromatAndPrintSentMIDICommandVerification("A");
+    
+    MIDICommand* MIDICommands = currentBank->getPresetA()->getMIDICommands();
+    
+    byte sizeOfMIDICommands = sizeof(MIDICommands);
+    byte sizeOfAMIDICommand = sizeof(MIDICommands[0]);
+
+    for (byte i = 0; i < sizeOfMIDICommands / sizeOfAMIDICommand; i++)
+    {
+      channel = MIDICommands[i]->getChannel();
+      programChange = MIDICommands[i]->getProgramChange();
+
+      Serial.print("Channel: ");
+      Serial.println(channel);
+
+      Serial.print("Program Change: ");
+      Serial.println(programChange);
+
+      Serial.println();
+    }
   }
   else if (buttonsState == BUTTON_B_PRESSED)
   {

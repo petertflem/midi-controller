@@ -5,10 +5,18 @@ Bank::Bank(char* bankName)
 {
   _bankName = bankName;
 
-  setPresetA("FLOW PART AWESOME", "Some data");
-  setPresetB("BRI", "Some data");
-  setPresetC("VER", "Some data");
-  setPresetD("INT", "Some data");
+  MIDICommand* one =  new MIDICommand(1, 2);
+  MIDICommand* two =  new MIDICommand(2, 2);
+
+  MIDICommand* MIDICommandsA[] = { one, two };
+  //MIDICommand* MIDICommandsB[] = { new MIDICommand(3, 2), new MIDICommand(4, 2) };
+  //MIDICommand* MIDICommandsC[] = { new MIDICommand(5, 2), new MIDICommand(6, 2) };
+  //MIDICommand* MIDICommandsD[] = { new MIDICommand(7, 2), new MIDICommand(8, 2) };
+
+  setPresetA("CHR", MIDICommandsA);
+  setPresetB("BRI", MIDICommandsA);
+  setPresetC("VER", MIDICommandsA);
+  setPresetD("INT", MIDICommandsA);
 }
 
 /* ========== PUBLIC FUNCTIONS ========== */
@@ -37,26 +45,26 @@ char* Bank::getBankName()
   return _bankName;
 }
 
-void Bank::setPresetA(char* presetName, char* presetData)
+void Bank::setPresetA(char* presetName, MIDICommand** MIDICommands)
 {
   // Delete if existing preset?
-  _presetA = new Preset(presetName, presetData);
+  _presetA = new Preset(presetName, MIDICommands);
 }
 
-void Bank::setPresetB(char* presetName, char* presetData)
+void Bank::setPresetB(char* presetName, MIDICommand** MIDICommands)
 {
   // Delete if existing preset?
-  _presetB = new Preset(presetName, presetData);
+  _presetB = new Preset(presetName, MIDICommands);
 }
 
-void Bank::setPresetC(char* presetName, char* presetData)
+void Bank::setPresetC(char* presetName, MIDICommand** MIDICommands)
 {
   // Delete if existing preset?
-  _presetC = new Preset(presetName, presetData);
+  _presetC = new Preset(presetName, MIDICommands);
 }
 
-void Bank::setPresetD(char* presetName, char* presetData)
+void Bank::setPresetD(char* presetName, MIDICommand** MIDICommands)
 {
   // Delete if existing preset?
-  _presetD = new Preset(presetName, presetData);
+  _presetD = new Preset(presetName, MIDICommands);
 }
